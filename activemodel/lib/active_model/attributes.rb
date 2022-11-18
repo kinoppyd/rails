@@ -138,6 +138,10 @@ module ActiveModel
       super
     end
 
+    def ==(obj)
+      super || (obj.instance_of?(self.class) && attributes == obj.attributes)
+    end
+
     private
       def _write_attribute(attr_name, value)
         @attributes.write_from_user(attr_name, value)
